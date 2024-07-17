@@ -21,51 +21,66 @@ import { WeatherLocation } from '../../shared/types/location.type';
           <mat-label>Search for a location</mat-label>
           <input matInput placeholder="Location" [(ngModel)]="query" />
         </mat-form-field>
-        <table mat-table [dataSource]="locations()" class="mat-elevation-z8">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-          </ng-container>
+        @if (locations().length) {
+          <table mat-table [dataSource]="locations()" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="region">
-            <th mat-header-cell *matHeaderCellDef>Region</th>
-            <td mat-cell *matCellDef="let element">{{ element.region }}</td>
-          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="region">
+              <th mat-header-cell *matHeaderCellDef>Region</th>
+              <td mat-cell *matCellDef="let element">{{ element.region }}</td>
+            </ng-container>
 
-          <!-- Country Column -->
-          <ng-container matColumnDef="country">
-            <th mat-header-cell *matHeaderCellDef>Country</th>
-            <td mat-cell *matCellDef="let element">{{ element.country }}</td>
-          </ng-container>
-          <!-- Country Column -->
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef>Action</th>
-            <td mat-cell *matCellDef="let element">
-              @if (!element.favorite) {
-                <button mat-icon-button matTooltip="Add to favorites" (click)="addToFavorites(element)">
+            <!-- Country Column -->
+            <ng-container matColumnDef="country">
+              <th mat-header-cell *matHeaderCellDef>Country</th>
+              <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+            </ng-container>
+            <!-- Country Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let element">
+                @if (!element.favorite) {
+                <button
+                  mat-icon-button
+                  matTooltip="Add to favorites"
+                  (click)="addToFavorites(element)"
+                >
                   <mat-icon>add</mat-icon>
                 </button>
-              } @else {
-                <button mat-icon-button matTooltip="Remove from favorites" (click)="removeFromFavorites(element)">
+                } @else {
+                <button
+                  mat-icon-button
+                  matTooltip="Remove from favorites"
+                  (click)="removeFromFavorites(element)"
+                >
                   <mat-icon>remove</mat-icon>
                 </button>
-              }
-              <!-- <button mat-icon-button>
-                <mat-icon>delete</mat-icon>
-              </button> -->
-            </td>
-          </ng-container>
+                }
+              </td>
+            </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        }
       </mat-card-content>
     </mat-card>
   `,
   styles: `
     .full-width {
         width: 100%;
+    }
+
+    mat-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      margin: 1rem;
     }
   `,
   imports: [

@@ -11,22 +11,22 @@ import { ActivatedRoute } from '@angular/router';
       <mat-card-title>Forecast</mat-card-title>
       <mat-card-content>
         @for (item of response()['forecast']; track item.query.q) {
-        <mat-card
-          class="forecast-item"
-          [ngClass]="{
-            sunny: item.query.current.condition.text === 'Sunny',
-            overcast: item.query.current.condition.text === 'Overcast' || item.query.current.condition.text === 'Partly cloudy',
-            'light-rain': item.query.current.condition.text === 'Light Rain shower',
-          }"
-        >
-          <mat-card-title>{{ item.query.location.name }}</mat-card-title>
-          <mat-card-content>
-            <p>
-              <span>{{ item.query.current.condition.text }}</span> -
-              <span>{{ item.query.current.temp_c }}</span>
-            </p></mat-card-content
+          <mat-card
+            class="forecast-item"
+            [ngClass]="{
+              sunny: item.query.current.condition.text === 'Sunny',
+              overcast: item.query.current.condition.text === 'Overcast' || item.query.current.condition.text === 'Partly cloudy',
+              'light-rain': item.query.current.condition.text === 'Light Rain shower',
+            }"
           >
-        </mat-card>
+            <mat-card-title>{{ item.query.location.name }}</mat-card-title>
+            <mat-card-content>
+              <p>
+                <span>{{ item.query.current.condition.text }}</span> -
+                <span>{{ item.query.current.temp_c }}</span>
+              </p></mat-card-content
+            >
+          </mat-card>
         }
       </mat-card-content>
     </mat-card>
