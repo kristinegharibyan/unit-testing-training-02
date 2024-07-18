@@ -32,7 +32,7 @@ export type CurrentWeather = {
   gust_kph: number;
 }
 
-export type Query = {
+export type ForecastQuery = {
   custom_id: string;
   q: string;
   location: WeatherLocation;
@@ -40,7 +40,7 @@ export type Query = {
 }
 
 export type BulkForecastItem = {
-  query: Query;
+  query: ForecastQuery;
 }
 
 export type ForecastApiResponse = {
