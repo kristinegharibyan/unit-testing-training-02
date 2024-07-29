@@ -69,7 +69,6 @@ export const loadFromLocalStorage$ = createEffect(
     return actions$.pipe(
       ofType(LocationsActions.loadFromLocalStorage),
       map(() => {
-        // BUG: remove to become
         const favoriteLocations =
           JSON.parse(storage.getItem<WeatherLocation[]>('favoriteLocations') as unknown as string);
         return LocationsActions.setFavoritesBulk({ locations: favoriteLocations })

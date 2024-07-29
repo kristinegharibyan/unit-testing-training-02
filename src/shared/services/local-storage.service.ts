@@ -5,7 +5,6 @@ export class LocalStorageService {
   constructor() {}
 
   getItem<T>(key: string): T {
-    // BUG
     return JSON.parse(localStorage.getItem(key) ?? '[]') as T;
   }
 
