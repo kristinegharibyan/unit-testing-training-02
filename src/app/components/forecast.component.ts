@@ -4,6 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { ForecastItemComponent } from './forecast-item.component';
+import { BulkForecastItem } from '../../shared/types/forecast.type';
 
 @Component({
   selector: 'app-forecast',
@@ -11,7 +12,7 @@ import { ForecastItemComponent } from './forecast-item.component';
     <mat-card class="forecast-container">
       <mat-card-title>Forecast</mat-card-title>
       <mat-card-content>
-        @for (item of response()['forecast']; track item.query.q) {
+        @for (item of response().forecast; track item.query.q) { 
           <app-forecast-item [item]="item.query"/>
         }
       </mat-card-content>
@@ -33,6 +34,6 @@ export class ForecastComponent {
   private readonly route = inject(ActivatedRoute);
   readonly response = toSignal(this.route.data, {
     initialValue: [],
-  }) as Signal<any>;
+  }) as Signal<{forecast: BulkForecastItem[]}>;
 
 }

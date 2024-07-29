@@ -1,7 +1,7 @@
-import { Component, input } from '@angular/core';
-import { ForecastQuery } from '../../shared/types/forecast.type';
-import { MatCardModule } from '@angular/material/card';
 import { NgClass } from '@angular/common';
+import { Component, input } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { ForecastQuery } from '../../shared/types/forecast.type';
 
 @Component({
   selector: 'app-forecast-item',
@@ -18,7 +18,7 @@ import { NgClass } from '@angular/common';
       <mat-card-content>
         <p>
           <span>{{ item().current.condition.text }}</span> -
-          <span>{{ item().current.temp_c }}</span>
+          <span>{{ item().current.temp_c }}<sup>°</sup>C</span>
         </p>
       </mat-card-content>
     </mat-card>

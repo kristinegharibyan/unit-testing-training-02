@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
@@ -21,7 +22,9 @@ import { WeatherLocation } from '../../shared/types/location.type';
           <mat-label>Search for a location</mat-label>
           <input matInput placeholder="Location" [(ngModel)]="query" />
         </mat-form-field>
-        @if (locations().length) {
+        @if (vm().loading) {
+          <mat-spinner mode="indeterminate"/>
+         } @else if (locations().length) {
           <table mat-table [dataSource]="locations()" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -43,7 +46,7 @@ import { WeatherLocation } from '../../shared/types/location.type';
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef>Action</th>
               <td mat-cell *matCellDef="let element">
-                @if (!element.favorite) {
+                @if (element.favorite) {
                 <button
                   mat-icon-button
                   matTooltip="Add to favorites"
@@ -90,6 +93,7 @@ import { WeatherLocation } from '../../shared/types/location.type';
     MatIconModule,
     MatTooltipModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     FormsModule,
   ],
   standalone: true,
