@@ -48,6 +48,7 @@ import { WeatherLocation } from '../../shared/types/location.type';
               <td mat-cell *matCellDef="let element">
                 @if (element.favorite) {
                 <button
+                  id="favorite-button"
                   mat-icon-button
                   matTooltip="Add to favorites"
                   (click)="addToFavorites(element)"

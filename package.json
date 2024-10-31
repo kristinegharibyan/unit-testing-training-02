@@ -26,6 +26,7 @@
     "@ngrx/store-devtools": "^18.0.1",
     "force": "^0.0.3",
     "immer": "^10.1.1",
+    "ngrx": "^0.0.1-security",
     "ngrx-immer": "^2.2.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
